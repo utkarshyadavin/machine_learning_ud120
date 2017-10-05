@@ -1,9 +1,10 @@
 #!/usr/bin/python
 
 import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsClassifier
 from prep_terrain_data import makeTerrainData
 from class_vis import prettyPicture
-
+from sklearn.metrics import accuracy_score
 features_train, labels_train, features_test, labels_test = makeTerrainData()
 
 
@@ -16,6 +17,14 @@ grade_slow = [features_train[ii][0] for ii in range(0, len(features_train)) if l
 bumpy_slow = [features_train[ii][1] for ii in range(0, len(features_train)) if labels_train[ii]==1]
 
 
+neigh = KNeighborsClassifier(n_neighbors = 3)
+neigh.fit(features_train , labels_train)
+pred = neigh.predict(features_test)
+
+
+acc = accuracy_score(labels_test , pred)
+
+print acc
 #### initial visualization
 plt.xlim(0.0, 1.0)
 plt.ylim(0.0, 1.0)

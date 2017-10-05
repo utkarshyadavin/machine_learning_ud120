@@ -23,6 +23,7 @@ dictionary = pickle.load( open("../final_project/final_project_dataset_modified.
 ### list the features you want to look at--first item in the 
 ### list will be the "target" feature
 features_list = ["bonus", "salary"]
+
 data = featureFormat( dictionary, features_list, remove_any_zeroes=True)
 target, features = targetFeatureSplit( data )
 
@@ -44,7 +45,10 @@ reg.fit (feature_train , target_train)
 print "Coefficient: " , reg.coef_
 print "intercept: " , reg.intercept_
 
+# Calcultaing the score of the model that we have created 
 
+print "Score on training data: " , reg.score(feature_train , target_train)
+print "Score on testing data: " , reg.score(feature_test , target_test)
 
 
 
@@ -69,6 +73,8 @@ try:
     plt.plot( feature_test, reg.predict(feature_test) )
 except NameError:
     pass
+reg.fit(feature_test, target_test)
+plt.plot(feature_train, reg.predict(feature_train), color="b") 
 plt.xlabel(features_list[1])
 plt.ylabel(features_list[0])
 plt.legend()
