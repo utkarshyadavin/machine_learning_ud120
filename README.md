@@ -1,4 +1,4 @@
 ud120-projects
 ==============
 
-Starter project code for students taking Udacity ud120
+Practise Assignments of Machine Learning Course on Udacity, UD120.
